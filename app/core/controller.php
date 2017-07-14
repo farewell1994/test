@@ -9,7 +9,7 @@ class Controller {
 		$this->view = new View(); //генеруємо представлення 
 	}
 	
-	function action_index()
+	function indexAction()
 	{
 	}
 }

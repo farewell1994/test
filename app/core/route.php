@@ -18,19 +18,24 @@ class Route
 			$defaultAction = $routes[3];//отримуємо з адреси action
 		}
         
+		//зклеюємо імена контролерів\моделів.екшнів 
+		$modelName = ucfirst(strtolower($defaultController)).'Model'; 
+ 		$controllerName = ucfirst(strtolower($defaultController)).'Controller';
+		$actionName = strtolower($defaultAction).'Action';
+		
 		//інклюдим потрібні файли
-		$model_file = ucfirst(strtolower($defaultController)).'Model.php';
-		$model_path = "app/model/".$model_file;
-		if(file_exists($model_path))
+		$modelFile = $modelName.'php';
+		$modelPath = "app/model/".$modelFile;
+		if(file_exists($modelPath))
 		{
-			include "app/model/".$model_file;
+			include ($modelPath);
 		}
 
-		$controller_file = ucfirst(strtolower($defaultController)).'Controller.php';
-		$controller_path = "app/controller/".$controller_file;
-		if(file_exists($controller_path)) 
+		$controllerFile = $controllerName.'.php';
+		$controllerPath = "app/controller/".$controllerFile;
+		if(file_exists($controllerPath)) 
 		{
-			include "app/controller/".$controller_file;
+			include ($controllerPath);
 		}
 		else //якщо не існує запрошеного контролера то вертаємо 404 помилку
 		{
@@ -50,7 +55,6 @@ class Route
 		}
 	
 	}
-	
 	function error() //редиректимся і показуємо 404 помилку
 	{
         $adress = 'http://'.$_SERVER['HTTP_HOST'].'/';
