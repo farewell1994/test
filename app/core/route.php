@@ -59,7 +59,6 @@ class Route
 	function error() //редиректимся і показуємо 404 помилку
 	{
         $adress = 'http://'.$_SERVER['HTTP_HOST'].'/';
-		var_dump($adress);
         header('HTTP/1.1 404 Not Found');
 		header("Status: 404 Not Found");
 		header('Location:'.$adress.'404');
