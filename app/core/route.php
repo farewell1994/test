@@ -18,20 +18,15 @@ class Route
 			$defaultAction = $routes[3];//отримуємо з адреси action
 		}
         
-        //зклеюємо імена		
-		$modelName = 'Model_'.$defaultController; 
-		$controllerName = 'Controller_'.$defaultController;
-		$actionName = 'action_'.$defaultAction;
-        
 		//інклюдим потрібні файли
-		$model_file = strtolower($modelName).'.php';
+		$model_file = ucfirst(strtolower($defaultController)).'Model.php';
 		$model_path = "app/model/".$model_file;
 		if(file_exists($model_path))
 		{
 			include "app/model/".$model_file;
 		}
 
-		$controller_file = strtolower($controllerName).'.php';
+		$controller_file = ucfirst(strtolower($defaultController)).'Controller.php';
 		$controller_path = "app/controller/".$controller_file;
 		if(file_exists($controller_path)) 
 		{
