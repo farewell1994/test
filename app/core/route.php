@@ -24,7 +24,7 @@ class Route
 		$actionName = strtolower($defaultAction).'Action';
 		
 		//інклюдим потрібні файли
-		$modelFile = $modelName.'php';
+		$modelFile = $modelName.'.php';
 		$modelPath = "app/model/".$modelFile;
 		if(file_exists($modelPath))
 		{
