@@ -7,7 +7,7 @@ class MainController extends Controller
 		$this->view->show('indexView.php', $data);
 	}
 	function deleteAction($someValue = null){
-		$data = $this->model->deleteInfo($someValue);
+		$this->model->deleteInfo($someValue);
 		header('Location: http://localhost/test');
 	}
 }
