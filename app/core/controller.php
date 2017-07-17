@@ -1,5 +1,5 @@
 <?php
-class Controller {
+abstract class Controller {
 	
 	public $model;
 	public $view;
@@ -7,9 +7,6 @@ class Controller {
 	function __construct()
 	{
 		$this->view = new View(); //генеруємо представлення 
-	}
-	
-	function indexAction()
-	{
+        $this->model = new MainModel();
 	}
 }

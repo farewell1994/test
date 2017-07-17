@@ -5,17 +5,18 @@ class Route
 	{
 		$defaultController = 'Main';//контроллер по замовчуванню
 		$defaultAction = 'index';//action по замовчуванню
+		$someValue = null;
 
 		$routes = explode('/', $_SERVER['REQUEST_URI']); 
 		
-		if ( !empty($routes[2]) ) //в продакшн зменшити ключі масиву на 1(!)
-		{	
+		if ( !empty($routes[2]) ){ //в продакшн зменшити ключі масиву на 1(!){	
 			$defaultController = $routes[2];//отримуємо з адреси контролер
 		}
-		
-		if ( !empty($routes[3]) )
-		{
+		if ( !empty($routes[3]) ){
 			$defaultAction = $routes[3];//отримуємо з адреси action
+		}
+		if (!empty($routes[4])){
+			$someValue = strtolower($routes[4]);
 		}
         
 		//зклеюємо імена контролерів\моделів.екшнів 
@@ -25,7 +26,8 @@ class Route
 		
 		//інклюдим потрібні файли
 		$modelFile = $modelName.'.php';
-		$modelPath = "app/model/".$modelFile;
+		//$modelPath = "app/model/".$modelFile;
+		$modelPath = "app/model/MainModel.php";
 		if(file_exists($modelPath))
 		{
 			include ($modelPath);
@@ -47,7 +49,7 @@ class Route
 		
 		if(method_exists($controller, $action))
 		{
-			$controller->$action(); //виконується action, або якщо його не існує 404 помилка
+			$controller->$action($someValue); //виконується action, або якщо його не існує 404 помилка
 		}
 		else
 		{
