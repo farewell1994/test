@@ -12,12 +12,13 @@
         /**
          * @param $someValue
          */
-        public function addInfo($someValue){
-            $info = explode('-', $someValue);
-			$query = "INSERT INTO `info` VALUES (,$info[0], $info[1])";
+        public function addInfo($name, $age){
+            $validateName = trim(strip_tags($name));
+            $validateAge = trim(strip_tags($age));
+			$query = "INSERT INTO `info` (`id`, `name`, `age`) VALUES (NULL,'$validateName','$validateAge')";
 			$result = $this->connect->exec($query);
+			header('Location: http://localhost/test');
         }
-
         /**
          * @param $someValue
          */

@@ -20,7 +20,7 @@ abstract class Model
     /**
      *
      */
-    public function addInfo(){
+    public function addInfo($name, $age){
 		
 	}
 
