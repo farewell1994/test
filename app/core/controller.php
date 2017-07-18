@@ -3,8 +3,11 @@ abstract class Controller {
 	
 	public $model;
 	public $view;
-	
-	function __construct()
+
+    /**
+     * Controller constructor.
+     */
+    function __construct()
 	{
 		$this->view = new View(); //генеруємо представлення 
         $this->model = new MainModel();

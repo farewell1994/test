@@ -3,7 +3,11 @@ class View
 {	
     //$content - представлення що відобразиться
 	//$data - дані які передати в представлення
-	function show($content, $data = null)
+    /**
+     * @param $content
+     * @param null $data
+     */
+    function show($content, $data = null)
 	{
 		include "app/view/".$content;
 	}
