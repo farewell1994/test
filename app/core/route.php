@@ -4,11 +4,11 @@ class Route
     /**
      *
      */
-    static function start($enviroment)
+    static function start()
 	{
 		$defaultController = 'Main';//контроллер по замовчуванню
 		$defaultAction = 'index';//action по замовчуванню
-		$someValue = null;
+		$uriSegment = null;
 		$routes = explode('/', $_SERVER['REQUEST_URI']); 
 		
 		if ( !empty($routes[2]) ){
@@ -18,7 +18,7 @@ class Route
 			$defaultAction = $routes[3];//отримуємо з адреси action
 		}
 		if (!empty($routes[4])){
-			$someValue = strtolower($routes[4]);
+            $uriSegment = strtolower($routes[4]);
 		}
         
 		//зклеюємо імена контролерів\моделів.екшнів 
@@ -51,7 +51,7 @@ class Route
 		
 		if(method_exists($controller, $action))
 		{
-			$controller->$action($someValue); //виконується action, або якщо його не існує 404 помилка
+			$controller->$action($uriSegment); //виконується action, або якщо його не існує 404 помилка
 		}
 		else
 		{

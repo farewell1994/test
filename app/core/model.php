@@ -27,14 +27,14 @@ abstract class Model
     /**
      * @param $someValue
      */
-    public function deleteInfo($someValue){
+    public function deleteInfo($uriSegment){
 		
 	}
 
     /**
      * @param $someValue
      */
-    public function editInfo($someValue){
+    public function editInfo($uriSegment){
 	
 	}
 }

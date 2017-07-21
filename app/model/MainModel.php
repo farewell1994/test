@@ -21,8 +21,8 @@
         /**
          * @param $someValue
          */
-        public function deleteInfo($someValue){
-            $id = $someValue;
+        public function deleteInfo($uriSegment){
+            $id = $uriSegment;
             $query = "DELETE FROM `info` WHERE `id`=$id";
 			$result = $this->connect->exec($query);
         }
