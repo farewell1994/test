@@ -7,7 +7,7 @@ abstract class Controller {
     /**
      * Controller constructor.
      */
-    function __construct()
+    public function __construct()
 	{
 		$this->view = new View(); //генеруємо представлення 
         $this->model = new MainModel();

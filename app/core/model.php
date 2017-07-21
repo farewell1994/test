@@ -6,7 +6,7 @@ abstract class Model
     /**
      * Model constructor.
      */
-    function __construct(){
+    public function __construct(){
         $this->connect = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
     }
 

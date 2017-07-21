@@ -7,7 +7,7 @@ class View
      * @param $content
      * @param null $data
      */
-    function show($content, $data = null)
+    public function show($content, $data = null)
 	{
 		include "app/view/".$content;
 	}

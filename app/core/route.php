@@ -4,7 +4,7 @@ class Route
     /**
      *
      */
-    static function start()
+    static public function start()
 	{
 		$defaultController = 'Main';//контроллер по замовчуванню
 		$defaultAction = 'index';//action по замовчуванню
@@ -63,7 +63,7 @@ class Route
     /**
      *
      */
-    function error() //редиректимся і показуємо 404 помилку
+    private function error() //редиректимся і показуємо 404 помилку
 	{
         $adress = 'http://'.$_SERVER['HTTP_HOST'].'/';
         header('HTTP/1.1 404 Not Found');
