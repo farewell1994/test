@@ -17,7 +17,6 @@
             $validateAge = trim(strip_tags($age));
 			$query = "INSERT INTO `info` (`id`, `name`, `age`) VALUES (NULL,'$validateName','$validateAge')";
 			$result = $this->connect->exec($query);
-			header('Location: http://localhost/test');
         }
         /**
          * @param $someValue
@@ -33,8 +32,12 @@
          * @param $name
          * @param $age
          */
-        public function editInfo($id, $name, $age){
-            $query = "UPDATE `info` SET `name`=$name, `age`=$age WHERE `id`=$id";
-            $result = $this->connect->exec($query);		
+        public function editInfo($data){
+            $name = $_POST["name"];
+            $age = $_POST["age"];
+            $id = $_POST["id"];
+            $query = "UPDATE `info` SET `name`='$name', `age`='$age' WHERE `id`='$id'";
+            $result = $this->connect->exec($query);
+            return $query;
         }
 	}

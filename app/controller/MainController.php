@@ -24,11 +24,18 @@ class MainController extends Controller
         $data=null;
         if($someValue!=null){
             $data = $this->model->addInfo($_POST['name'], $_POST['age']);
+            header('Location: http://localhost/test');
         }
         $this->view->show('addView.php', $data);
     }
     function editAction($someValue){
-        $data = null;
-        $this->view->show('addView.php', $data);
+        if($someValue=='ok'){
+            $query = $this->model->editInfo($_POST);
+            header('Location: http://localhost/test');
+        }
+        else {
+            $data = explode('-', $someValue);
+        }
+        $this->view->show('editView.php', $data);
     }
 }
