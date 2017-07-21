@@ -9,17 +9,16 @@ class Route
 		$defaultController = 'Main';//контроллер по замовчуванню
 		$defaultAction = 'index';//action по замовчуванню
 		$someValue = null;
-
 		$routes = explode('/', $_SERVER['REQUEST_URI']); 
 		
-		if ( !empty($routes[1+$enviroment]) ){
-			$defaultController = $routes[1+$enviroment];//отримуємо з адреси контролер
+		if ( !empty($routes[2]) ){
+			$defaultController = $routes[2];//отримуємо з адреси контролер
 		}
-		if ( !empty($routes[2+$enviroment]) ){
-			$defaultAction = $routes[2+$enviroment];//отримуємо з адреси action
+		if ( !empty($routes[3]) ){
+			$defaultAction = $routes[3];//отримуємо з адреси action
 		}
-		if (!empty($routes[3+$enviroment])){
-			$someValue = strtolower($routes[3+$enviroment]);
+		if (!empty($routes[4])){
+			$someValue = strtolower($routes[4]);
 		}
         
 		//зклеюємо імена контролерів\моделів.екшнів 
