@@ -45,8 +45,10 @@ class Route
 		{
 			Route::error();
 		}
-	
-		$controller = new $controllerName;
+
+		$needModel = new MainModel();
+		$needView = new View();
+		$controller = new $controllerName($needModel, $needView);
 		$action = $actionName;
 		
 		if(method_exists($controller, $action))

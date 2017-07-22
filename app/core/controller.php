@@ -7,9 +7,9 @@ abstract class Controller {
     /**
      * Controller constructor.
      */
-    public function __construct()
+    public function __construct(MainModel $needModel, View $needView)
 	{
-		$this->view = new View(); //генеруємо представлення 
-        $this->model = new MainModel();
+		$this->view = $needView;
+        $this->model = $needModel;
 	}
 }
