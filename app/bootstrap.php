@@ -28,7 +28,7 @@ else
 }
 $actionName = strtolower($DefaultAction).'Action';
 
-$needModel = new MainModel();
+$needModel = new MainModel($db);
 $needView = new View();
 $controller = new $controllerName($needModel, $needView);
 Route::start($controller, $actionName, $uriSegment);

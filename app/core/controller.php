@@ -1,9 +1,7 @@
 <?php
 abstract class Controller {
-	
 	public $model;
 	public $view;
-
     /**
      * Controller constructor.
      */
