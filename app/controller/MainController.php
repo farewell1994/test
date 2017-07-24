@@ -38,4 +38,7 @@ class MainController extends Controller
         }
         $this->view->show('editView.php', $data);
     }
+    public function errorAction(){
+        $this->view->show('errorView.php');
+    }
 }
