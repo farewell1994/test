@@ -2,24 +2,25 @@
 class MainController extends Controller
 {
     /**
-     * @param null $someValue
+     * @param null $uriSegment
      */
     public function indexAction($uriSegment = null)
-	{	
-		$data = $this->model->getInfo();
-		$this->view->show('indexView.php', $data);
-	}
+    {
+        $data = $this->model->getInfo();
+        $this->view->show('indexView.php', $data);
+    }
 
     /**
-     * @param null $someValue
+     * @param null $uriSegment
      */
     public function deleteAction($uriSegment = null)
     {
-		$this->model->deleteInfo($uriSegment);
-		header('Location: http://localhost/test');
-	}
+        $this->model->deleteInfo($uriSegment);
+        header('Location: http://localhost/test');
+    }
+
     /**
-     * @param $someValue
+     * @param $uriSegment
      */
     public function addAction($uriSegment)
     {
@@ -30,6 +31,10 @@ class MainController extends Controller
         }
         $this->view->show('addView.php', $data);
     }
+
+    /**
+     * @param $uriSegment
+     */
     public function editAction($uriSegment)
     {
         if ($uriSegment=='ok') {
@@ -40,6 +45,10 @@ class MainController extends Controller
         }
         $this->view->show('editView.php', $data);
     }
+
+    /**
+     *
+     */
     public function errorAction()
     {
         $this->view->show('errorView.php');

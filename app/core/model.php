@@ -1,6 +1,6 @@
 <?php
 abstract class Model
-{        
+{
     protected $connect;
     /**
      * Model constructor.
