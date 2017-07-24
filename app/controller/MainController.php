@@ -13,32 +13,35 @@ class MainController extends Controller
     /**
      * @param null $someValue
      */
-    public function deleteAction($uriSegment = null){
+    public function deleteAction($uriSegment = null)
+    {
 		$this->model->deleteInfo($uriSegment);
 		header('Location: http://localhost/test');
 	}
     /**
      * @param $someValue
      */
-    public function addAction($uriSegment){
+    public function addAction($uriSegment)
+    {
         $data=null;
-        if($uriSegment!=null){
+        if ($uriSegment!=null) {
             $data = $this->model->addInfo($_POST['name'], $_POST['age']);
             header('Location: http://localhost/test');
         }
         $this->view->show('addView.php', $data);
     }
-    public function editAction($uriSegment){
-        if($uriSegment=='ok'){
+    public function editAction($uriSegment)
+    {
+        if ($uriSegment=='ok') {
             $query = $this->model->editInfo($_POST);
             header('Location: http://localhost/test');
-        }
-        else {
+        } else {
             $data = explode('-', $uriSegment);
         }
         $this->view->show('editView.php', $data);
     }
-    public function errorAction(){
+    public function errorAction()
+    {
         $this->view->show('errorView.php');
     }
 }
