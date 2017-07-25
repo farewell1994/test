@@ -17,10 +17,13 @@ class MainModel extends Model
      */
     public function addInfo($name, $age)
     {
-        $validateName = trim(strip_tags($name));
-        $validateAge = trim(strip_tags($age));
-        $query = "INSERT INTO `info` (`id`, `name`, `age`) VALUES (NULL,'$validateName','$validateAge')";
-        $result = $this->connect->exec($query);
+        $result = 0;
+        if ($name!="" && $age != 0) {
+            $validateData = Helper::validate(func_get_args());
+            $query = "INSERT INTO `info` (`id`, `name`, `age`) VALUES (NULL,'$validateData[0]','$validateData[1]')";
+            $result = $this->connect->exec($query);
+        }
+        return $result;
     }
 
     /**
@@ -31,6 +34,7 @@ class MainModel extends Model
         $id = $uriSegment;
         $query = "DELETE FROM `info` WHERE `id`=$id";
         $result = $this->connect->exec($query);
+        return $result;
     }
 
     /**
@@ -39,11 +43,12 @@ class MainModel extends Model
      */
     public function editInfo($data)
     {
-        $name = $_POST["name"];
-        $age = $_POST["age"];
-        $id = $_POST["id"];
-        $query = "UPDATE `info` SET `name`='$name', `age`='$age' WHERE `id`='$id'";
-        $result = $this->connect->exec($query);
-        return $query;
+        $result = 0;
+        if ($data['name']!= "" && $data['age'] != 0) {
+            $validateData = Helper::validate($_POST);
+            $query = "UPDATE `info` SET `name`='$validateData[name]', `age`='$validateData[age]' WHERE `id`='$validateData[id]'";
+            $result = $this->connect->exec($query);
+        }
+        return $result;
     }
 }

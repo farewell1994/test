@@ -15,8 +15,13 @@ class MainController extends Controller
      */
     public function deleteAction($uriSegment = null)
     {
-        $this->model->deleteInfo($uriSegment);
-        header('Location: http://localhost/test');
+        $result = $this->model->deleteInfo($uriSegment);
+        if ($result == 1) {
+            header('Location: http://localhost/test');
+        } else {
+            echo "<script type='text/javascript'>alert('Student not found');
+            window.location.href='http://localhost/test'</script>";
+        }
     }
 
     /**
@@ -26,8 +31,13 @@ class MainController extends Controller
     {
         $data=null;
         if ($uriSegment!=null) {
-            $data = $this->model->addInfo($_POST['name'], $_POST['age']);
-            header('Location: http://localhost/test');
+            $data = $this->model->addInfo($_POST['name'], $_POST['age']*1);
+            if ($data == 1) {
+                header('Location: http://localhost/test');
+            } else {
+                echo "<script type='text/javascript'>alert('Incorrect data');
+                window.location.href='http://localhost/test/main/add'</script>";
+            }
         }
         $this->view->show('addView.php', $data);
     }
@@ -37,13 +47,20 @@ class MainController extends Controller
      */
     public function editAction($uriSegment)
     {
-        if ($uriSegment=='ok') {
-            $query = $this->model->editInfo($_POST);
-            header('Location: http://localhost/test');
-        } else {
+        if ($uriSegment!='ok') {
             $data = explode('-', $uriSegment);
+            $this->view->show('editView.php', $data);
+        } else {
+            $result = $this->model->editInfo($_POST);
+            if ($result == 1) {
+                header('Location: http://localhost/test');
+            } else {
+                echo "<script type='text/javascript'>alert('Incorrect data')</script>";
+                $data = array_values($_POST);
+                $this->view->show('editView.php', $data);
+            }
         }
-        $this->view->show('editView.php', $data);
+
     }
 
     /**
