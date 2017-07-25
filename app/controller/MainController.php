@@ -50,7 +50,7 @@ class MainController extends Controller
         if ($uriSegment!='ok') {
             $data = explode('-', $uriSegment);
             $this->view->show('editView.php', $data);
-        } else {
+        } elseif ($uriSegment == 'ok') {
             $result = $this->model->editInfo($_POST);
             if ($result == 1) {
                 header('Location: http://localhost/test');

@@ -3,7 +3,6 @@ require_once 'core/model.php';
 require_once 'core/view.php';
 require_once 'core/controller.php';
 require_once 'core/route.php';
-require_once 'core/helper.php';
 $routes = explode('/', $_SERVER['REQUEST_URI']);
 if (!empty($routes[2])) {
     $DefaultController = $routes[2];
@@ -13,6 +12,9 @@ if (!empty($routes[3])) {
 }
 if (!empty($routes[4])) {
     $uriSegment = strtolower($routes[4]);
+}
+if (isset($routes[5])) {
+    Route::error();
 }
 $controllerName = ucfirst(strtolower($DefaultController)).'Controller';
 $controllerPath = 'app/controller/'.$DefaultController.'Controller.php';

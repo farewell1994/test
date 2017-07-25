@@ -19,6 +19,6 @@ class Route
      */
     public static function error() //редиректимся і показуємо  помилку
     {
-        header('Location: error/page');
+        header('Location: http://localhost/test/main/error');
     }
 }

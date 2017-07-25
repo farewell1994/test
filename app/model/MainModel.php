@@ -19,7 +19,7 @@ class MainModel extends Model
     {
         $result = 0;
         if ($name!="" && $age != 0) {
-            $validateData = Helper::validate(func_get_args());
+            $validateData = $this->validate(func_get_args());
             $query = "INSERT INTO `info` (`id`, `name`, `age`) VALUES (NULL,'$validateData[0]','$validateData[1]')";
             $result = $this->connect->exec($query);
         }
@@ -45,10 +45,17 @@ class MainModel extends Model
     {
         $result = 0;
         if ($data['name']!= "" && $data['age'] != 0) {
-            $validateData = Helper::validate($_POST);
+            $validateData = $this->validate($_POST);
             $query = "UPDATE `info` SET `name`='$validateData[name]', `age`='$validateData[age]' WHERE `id`='$validateData[id]'";
             $result = $this->connect->exec($query);
         }
         return $result;
+    }
+    public function validate($data)
+    {
+        foreach ($data as &$d) {
+            $d = trim(strip_tags($d));
+        }
+        return $data;
     }
 }
