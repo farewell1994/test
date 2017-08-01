@@ -6,7 +6,7 @@ abstract class Controller
     /**
      * Controller constructor.
      */
-    public function __construct(MainModel $needModel, View $needView)
+    public function __construct($needModel, $needView)
     {
         $this->view = $needView;
         $this->model = $needModel;
