@@ -1,4 +1,7 @@
 <?php
+namespace Test\Controller;
+use Test\Core\Controller;
+
 class MainController extends Controller
 {
     /**

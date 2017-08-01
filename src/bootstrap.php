@@ -1,10 +1,8 @@
 <?php
 use Pimple\Container;
+use Test\Core\View;
+use Test\Core\Route;
 
-require_once 'core/model.php';
-require_once 'core/view.php';
-require_once 'core/controller.php';
-require_once 'core/route.php';
 $routes = explode('/', $_SERVER['REQUEST_URI']);
 if (!empty($routes[2])) {
     $DefaultController = $routes[2];
@@ -18,10 +16,10 @@ if (!empty($routes[4])) {
 if (isset($routes[5])) {
     Route::error();
 }
-$controllerName = ucfirst(strtolower($DefaultController)).'Controller';
-$controllerPath = 'app/controller/'.$DefaultController.'Controller.php';
-$modelPath = 'app/model/'.ucfirst(strtolower($DefaultController)).'Model.php';
-$modelName = ucfirst(strtolower($DefaultController)).'Model';
+$controllerName = '\\Test\\Controller\\'.ucfirst(strtolower($DefaultController)).'Controller';
+$controllerPath = 'src/controller/'.$DefaultController.'Controller.php';
+$modelPath = 'src/model/'.ucfirst(strtolower($DefaultController)).'Model.php';
+$modelName = '\\Test\\Model\\'.ucfirst(strtolower($DefaultController)).'Model';
 if (file_exists($modelPath)) {
     include ($modelPath);
 }

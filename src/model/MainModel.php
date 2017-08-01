@@ -1,4 +1,7 @@
 <?php
+namespace Test\Model;
+use Test\Core\Model;
+
 class MainModel extends Model
 {
     /**

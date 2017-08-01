@@ -1,6 +1,8 @@
-<?php 
+<?php
+namespace Test\Core;
+
 class View
-{	
+{
     //$content - представлення що відобразиться
 	//$data - дані які передати в представлення
     /**
@@ -9,6 +11,6 @@ class View
      */
     public function show($content, $data = null)
     {
-        include "app/view/".$content;
+        include "src/view/".$content;
     }
 }

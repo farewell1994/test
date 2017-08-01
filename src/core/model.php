@@ -1,4 +1,6 @@
 <?php
+namespace Test\Core;
+
 abstract class Model
 {
     protected $connect;
