@@ -20,12 +20,7 @@ $controllerName = '\\Test\\Controller\\'.ucfirst(strtolower($DefaultController))
 $controllerPath = 'src/controller/'.$DefaultController.'Controller.php';
 $modelPath = 'src/model/'.ucfirst(strtolower($DefaultController)).'Model.php';
 $modelName = '\\Test\\Model\\'.ucfirst(strtolower($DefaultController)).'Model';
-if (file_exists($modelPath)) {
-    include ($modelPath);
-}
-if (file_exists($controllerPath)) {
-    include ($controllerPath);
-} else {
+if (!file_exists($modelPath) or !file_exists($controllerPath)) {
     Route::error();
 }
 $actionName = strtolower($DefaultAction).'Action';
