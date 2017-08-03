@@ -2,7 +2,7 @@
 namespace Test\Model;
 use Test\Core\Model;
 
-class MainModel extends Model
+class InfoModel extends Model
 {
     /**
      * @return mixed

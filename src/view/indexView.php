@@ -8,7 +8,7 @@ foreach ($data as $students){
 	echo "<li>";
 	echo "Name = ".$students[1]."<br>";
 	echo "Age = ".$students[2]."<br>";
-	echo '<a href="http://localhost/test/main/edit/'.$students[0].'-'.$students[1].'-'.$students[2].'">edit</a> | <a href="http://localhost/test/main/delete/'.$students[0].'">delete</a>';
+	echo '<a href="main/edit/'.$students[0].'-'.$students[1].'-'.$students[2].'">edit</a> | <a href="main/delete/'.$students[0].'">delete</a>';
 	echo "</li>";
 }
 echo "</ol>";

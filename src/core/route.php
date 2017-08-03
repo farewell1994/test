@@ -1,26 +1,41 @@
 <?php
 namespace Test\Core;
 
+use Pimple\Container;
+
 class Route
 {
-    /**
-     * @param string $controller
-     * @param string $action
-     * @param null $uriSegment
-     */
-    public static function start($controller = "MainController", $action = "indexAction", $uriSegment = null)
+    private static $routes;
+    public static function start($path, $uriSegment, $routesArray)
     {
-        if (method_exists($controller, $action)) {
-            $controller->$action($uriSegment);
-        } else {
-            Route::error();
+        self::$routes = $routesArray;
+        $counter = 0;
+        foreach (self::$routes as $key => $value) {
+            $counter++;
+            if ($path == $key) {
+                $container = new Container();
+                $container['db'] = function ($c) {
+                    return new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
+                };
+                $container['view'] = function ($c) {
+                    return new View();
+                };
+                $modelName = '\\Test\\Model\\' . $value['model'];
+                $controllerName = '\\Test\\Controller\\' . $value['controller'];
+                $actionName = $value['action'];
+                $container['model'] = function ($c) use ($modelName) {
+                    return new $modelName($c['db']);
+                };
+                $container['controller'] = function ($c) use ($controllerName) {
+                    return new $controllerName($c['model'], $c['view']);
+                };
+                $controller = $container['controller'];
+                $controller->$actionName($uriSegment);
+                break;
+            }
+            if ($counter == count(self::$routes)) {
+                header('Location: /test/error');
+            }
         }
-    }
-    /**
-     *
-     */
-    public static function error() //редиректимся і показуємо  помилку
-    {
-        header('Location: http://localhost/test/main/error');
     }
 }

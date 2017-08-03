@@ -2,12 +2,12 @@
 namespace Test\Controller;
 use Test\Core\Controller;
 
-class MainController extends Controller
+class StudentController extends Controller
 {
     /**
      * @param null $uriSegment
      */
-    public function indexAction($uriSegment = null)
+    public function indexAction()
     {
         $data = $this->model->getInfo();
         $this->view->show('indexView.php', $data);
@@ -16,50 +16,49 @@ class MainController extends Controller
     /**
      * @param null $uriSegment
      */
-    public function deleteAction($uriSegment = null)
+    public function deleteAction($uriSegment)
     {
         $result = $this->model->deleteInfo($uriSegment);
         if ($result == 1) {
-            header('Location: http://localhost/test');
+            header('Location: /test');
         } else {
-            echo "<script type='text/javascript'>alert('Student not found');
-            window.location.href='http://localhost/test'</script>";
+            $data = 'Student not found';
+            $this->view->show('validateView.php', $data);
         }
     }
 
     /**
      * @param $uriSegment
      */
-    public function addAction($uriSegment)
+    public function addAction()
     {
-        $data=null;
-        if ($uriSegment!=null) {
+        $data = null;
+        if ($_POST) {
             $data = $this->model->addInfo($_POST['name'], $_POST['age']*1);
             if ($data == 1) {
-                header('Location: http://localhost/test');
+                header('Location: /test');
             } else {
-                echo "<script type='text/javascript'>alert('Incorrect data');
-                window.location.href='http://localhost/test/main/add'</script>";
+                $data = 'Incorrect data';
             }
         }
         $this->view->show('addView.php', $data);
     }
-
     /**
      * @param $uriSegment
      */
     public function editAction($uriSegment)
     {
-        if ($uriSegment!='ok') {
-            $data = explode('-', $uriSegment);
+        $data[0] = null;
+        if (!$_POST) {
+            $data[1] = explode('-', $uriSegment);
             $this->view->show('editView.php', $data);
-        } elseif ($uriSegment == 'ok') {
+        } elseif ($_POST) {
             $result = $this->model->editInfo($_POST);
             if ($result == 1) {
-                header('Location: http://localhost/test');
+                header('Location: /test');
             } else {
-                echo "<script type='text/javascript'>alert('Incorrect data')</script>";
-                $data = array_values($_POST);
+                $data[0] = 'Incorrect data';
+                $data[1] = array_values($_POST);
                 $this->view->show('editView.php', $data);
             }
         }

@@ -1,43 +1,16 @@
 <?php
-use Pimple\Container;
-use Test\Core\View;
+
 use Test\Core\Route;
 
-$routes = explode('/', $_SERVER['REQUEST_URI']);
-if (!empty($routes[2])) {
-    $DefaultController = $routes[2];
+$uriArray = explode('/', $_SERVER['REQUEST_URI']);
+if (!empty($uriArray[4])) {
+    $uriSegment = strtolower($uriArray[4]);
 }
-if (!empty($routes[3])) {
-    $DefaultAction = $routes[3];
-}
-if (!empty($routes[4])) {
-    $uriSegment = strtolower($routes[4]);
-}
-if (isset($routes[5])) {
-    Route::error();
-}
-$controllerName = '\\Test\\Controller\\'.ucfirst(strtolower($DefaultController)).'Controller';
-$controllerPath = 'src/controller/'.$DefaultController.'Controller.php';
-$modelPath = 'src/model/'.ucfirst(strtolower($DefaultController)).'Model.php';
-$modelName = '\\Test\\Model\\'.ucfirst(strtolower($DefaultController)).'Model';
-if (!file_exists($modelPath) or !file_exists($controllerPath)) {
-    Route::error();
-}
-$actionName = strtolower($DefaultAction).'Action';
-
-$container = new Container();
-$container['db'] = function($c) {
-    return new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
-};
-$container['view'] = function($c) {
-    return new View();
-};
-$container['model'] = function($c) use ($modelName) {
-    return new $modelName($c['db']);
-};
-$container['controller'] = function($c) use ($controllerName){
-    return new $controllerName($c['model'], $c['view']);
-};
-$controller = $container['controller'];
-Route::start($controller, $actionName, $uriSegment);
-
+$routesArray = array(
+    '/test/' => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'indexAction'),
+    '/test/main/add' => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'addAction'),
+    '/test/main/edit/'.$uriSegment => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'editAction'),
+    '/test/main/delete/'.$uriSegment => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'deleteAction'),
+    '/test/error' => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'errorAction')
+);
+Route::start($_SERVER['REQUEST_URI'], $uriSegment, $routesArray);
