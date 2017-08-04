@@ -1,7 +1,7 @@
 {% include 'head.html' %}
     <body>
-        <h4>Ooops. This page does not exist</h4>
-        <br>
+        <p class="error">Ooops. This page does not exist</p>
+        <hr>
         <a href ="/test">Return to list</a>
     </body>
 </html>

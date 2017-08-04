@@ -7,6 +7,7 @@
             <input type="text" name="age" placeholder ="age"><br>
             <input type="submit" name="submit" value="add">
         </form>
+        <hr>
         <a href="/test">Return to list</a>
     </body>
 </html>

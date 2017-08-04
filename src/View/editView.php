@@ -7,6 +7,7 @@
             <input type="text" name="age" value ="{{data.2}}"><br>
             <input type="submit" name="submit" value="edit">
         </form>
+        <hr>
         <a href="/test">Return to list</a>
     </body>
 </html>
