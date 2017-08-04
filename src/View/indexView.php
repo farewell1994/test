@@ -12,4 +12,4 @@ foreach ($data as $students){
 	echo "</li>";
 }
 echo "</ol>";
-echo '<a href="http://localhost/test/main/add">Add Student</a>';
+echo '<a href="/test/main/add">Add Student</a>';
