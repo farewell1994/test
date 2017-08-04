@@ -1,7 +1,6 @@
 <?php
 namespace Test\Core;
 
-use Test\Core\Providers;
 use Pimple\Container;
 
 /**

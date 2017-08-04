@@ -8,6 +8,7 @@ use Test\Core\Model;
  */
 class InfoModel extends Model
 {
+    public $data;
     /**
      * This method queries all data from the database
      * @return mixed
@@ -16,7 +17,10 @@ class InfoModel extends Model
     {
         $query = "SELECT `id`, `name`, `age` FROM `info`";
         $result = $this->connect->query($query);
-        return $result;
+        foreach($result as $d){
+            $this->data[] = $d;
+        }
+        return $this->data;
     }
 
     /**
