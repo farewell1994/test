@@ -1,0 +1,12 @@
+<?php
+
+namespace Test\Core\Providers;
+
+class ModelProvider extends Provider
+{
+    public static function register($modelName){
+        $container['controller'] = function ($c) use ($modelName) {
+            return new $modelName($c['db']);
+        };
+    }
+}

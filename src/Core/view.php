@@ -1,11 +1,17 @@
 <?php
 namespace Test\Core;
 
+use Twig\Autoloader;
+
+/**
+ * Class View This class include needed views
+ * @package Test\Core
+ */
 class View
 {
     /**
-     * @param $content
-     * @param null $data
+     * @param string $content Path to view
+     * @param null $data Array of data
      */
     public function show($content, $data = null)
     {
