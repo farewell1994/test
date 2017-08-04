@@ -24,7 +24,6 @@ class View
      */
     public function show($content, $data = null)
     {
-           // echo $this->twig->render($content, array('data' => $data));
-            include "src/view/" . $content;
+        echo $this->twig->render($content, array('data' => $data));
     }
 }

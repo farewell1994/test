@@ -1,15 +1,10 @@
-<?php
-/*require_once './vendor/autoload.php';
-$loader = new Twig_Loader_String();
-$twig = new Twig_Environment($loader);
-echo $twig->render('Hello {{ name }}!', array('name' => 'Fabien'))."<br>";*/
-echo "<ol>";
-foreach ($data as $students){
-	echo "<li>";
-	echo "Name = ".$students[1]."<br>";
-	echo "Age = ".$students[2]."<br>";
-	echo '<a href="main/edit/'.$students[0].'-'.$students[1].'-'.$students[2].'">edit</a> | <a href="main/delete/'.$students[0].'">delete</a>';
-	echo "</li>";
-}
-echo "</ol>";
-echo '<a href="/test/main/add">Add Student</a>';
+<ol>
+    {% for info in data %}
+    <li>
+        <p>Name = {{ info.name }}</p>
+        <p>Age = {{ info.age }}</p>
+        <a href="main/edit/{{ info.id }}-{{ info.name }}-{{ info.age }}">edit</a> | <a href="main/delete/{{ info.id }}">delete</a>
+    </li>
+    {% endfor %}
+</ol>
+<a href="/test/main/add">Add Student</a>

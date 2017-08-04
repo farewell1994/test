@@ -1,6 +1,3 @@
-<?php
-
-echo $data;
-?>
+{{data}}
 <br>
 <a href="/test">Return to list</a>

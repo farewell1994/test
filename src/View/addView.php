@@ -1,6 +1,4 @@
-<?php
-echo $data;
-?>
+{{data}}
 </br>
 <form method="post">
     <input type="text" name="name" placeholder="name"><br>

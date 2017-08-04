@@ -18,7 +18,6 @@ class StudentController extends Controller
          */
         $data = $this->model->getInfo();
         $this->view->show('indexView.php', $data);
-        //$this->view->show('viewTwig.php', $data);
     }
 
     /**
@@ -82,12 +81,12 @@ class StudentController extends Controller
         /**
          * @var array. Data that is sent to the view
          */
-        $data[0] = null;
+        $data = null;
         if (!$_POST) {
             /**
              * @var array Data about student
              */
-            $data[1] = explode('-', $uriSegment);
+            $data = explode('-', $uriSegment);
             $this->view->show('editView.php', $data);
         } elseif ($_POST) {
             /**
@@ -98,13 +97,13 @@ class StudentController extends Controller
                 header('Location: /test');
             } else {
                 /**
-                 * @var string. Error for user
-                 */
-                $data[0] = 'Incorrect data';
-                /**
                  * @var array. Array of entered incorrect values
                  */
-                $data[1] = array_values($_POST);
+                $data = array_values($_POST);
+                /**
+                 * @var string. Error for user
+                 */
+                $data['error'] = 'Incorrect data';
                 $this->view->show('editView.php', $data);
             }
         }
