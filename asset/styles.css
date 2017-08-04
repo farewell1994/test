@@ -1,0 +1,12 @@
+a{
+    text-decoration: none;
+    font-size: 20px;
+    color: darkgreen;
+}
+.list{
+    font-size: 25px;
+    color:darkred;
+}
+.add {
+    color:blue;
+}
