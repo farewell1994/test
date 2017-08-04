@@ -8,6 +8,9 @@ use Test\Core\Model;
  */
 class InfoModel extends Model
 {
+    /**
+     * @var Array for returning
+     */
     public $data;
     /**
      * This method queries all data from the database
