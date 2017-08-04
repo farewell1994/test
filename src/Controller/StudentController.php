@@ -18,6 +18,7 @@ class StudentController extends Controller
          */
         $data = $this->model->getInfo();
         $this->view->show('indexView.php', $data);
+        //$this->view->show('viewTwig.php', $data);
     }
 
     /**
