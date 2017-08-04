@@ -1,6 +1,6 @@
 {% include 'head.html' %}
     <body>
-        <p>{{data}}</p>
+        <p class="error">{{data}}</p>
         </br>
         <form method="post">
             <input type="text" name="name" placeholder="name"><br>

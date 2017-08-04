@@ -1,6 +1,6 @@
 {% include 'head.html' %}
     <body>
-    <p>{{data.error}}</p>
+    <p class="error">{{data.error}}</p>
         <form method="post">
             <input type="hidden" name="id" value="{{data.0}}">
             <input type="text" name="name" value="{{data.1}}"><br>
