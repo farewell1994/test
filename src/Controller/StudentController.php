@@ -88,7 +88,7 @@ class StudentController extends Controller
              */
             $data = explode('-', $uriSegment);
             $this->view->show('editView.php', $data);
-        } elseif ($_POST) {
+        } else {
             /**
              * @var integer. Assigned 1 if the query is successful
              */
