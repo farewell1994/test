@@ -1,7 +1,8 @@
 <?php
 namespace Test\Core;
 
-use Pimple\Container;
+use \Pimple\Container;
+use Twig\Autoloader;
 
 /**
  * Class for determining the action, depending on the received URI
@@ -39,8 +40,11 @@ class Route
                 $container['db'] = function ($c) {
                     return new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
                 };
+                $container['twig'] = function ($c) {
+                    return new \Twig_Environment(new \Twig_Loader_Filesystem('src/View'));;
+                };
                 $container['view'] = function ($c) {
-                    return new View();
+                    return new View($c['twig']);
                 };
                 /**
                  * @var string

@@ -9,14 +9,10 @@ use Twig\Autoloader;
  */
 class View
 {
-    public $loader;
-    public $twig;
-    public $template;
-    function __construct()
+    private $twig;
+    function __construct(\Twig_Environment $twig)
     {
-        \Twig_Autoloader::register();
-        $this->loader = new \Twig_Loader_Filesystem('src/View');
-        $this->twig = new \Twig_Environment($this->loader);
+        $this->twig = $twig;
     }
     /**
      * @param string $content Path to view
