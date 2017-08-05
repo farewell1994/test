@@ -9,7 +9,7 @@ use Test\Core\Model;
 class InfoModel extends Model
 {
     /**
-     * @var Array for returning
+     * @var array. Array for returning
      */
     public $data;
     /**

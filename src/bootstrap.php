@@ -1,14 +1,22 @@
 <?php
 
 use Test\Core\Route;
+use Test\Core\ServiceProvider;
+use Pimple\Container;
 
+/**
+ * Pimple container
+ */
+$container = new Container();
+$ServiceProvider = new ServiceProvider();
+$objects = $ServiceProvider->register($container);
 /**
  * @var array Requested URI
  */
 $uriArray = explode('/', $_SERVER['REQUEST_URI']);
 if (!empty($uriArray[4])) {
     /**
-     * @var URI parameter
+     * @var string URI parameter
      */
     $uriSegment = strtolower($uriArray[4]);
 }
@@ -23,4 +31,4 @@ $routesArray = array(
     '/test/main/delete/'.$uriSegment => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'deleteAction'),
     '/test/error' => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'errorAction')
 );
-Route::start($_SERVER['REQUEST_URI'], $uriSegment, $routesArray);
+Route::start($_SERVER['REQUEST_URI'], $uriSegment, $routesArray, $objects);
