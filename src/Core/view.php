@@ -1,14 +1,16 @@
 <?php
+
 namespace Test\Core;
 
-use Twig\Autoloader;
-
 /**
- * Class View This class include needed views
+ * Class View This class renders needed views
  * @package Test\Core
  */
 class View
 {
+    /**
+     * @var \Twig_Environment
+     */
     private $twig;
     function __construct(\Twig_Environment $twig)
     {

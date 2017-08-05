@@ -37,14 +37,8 @@ class Route
                  * @var object. Container for dependency injection
                  */
                 $container = new Container();
-                $container['db'] = function ($c) {
-                    return new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
-                };
-                $container['twig'] = function ($c) {
-                    return new \Twig_Environment(new \Twig_Loader_Filesystem('src/View'));;
-                };
                 $container['view'] = function ($c) {
-                    return new View($c['twig']);
+                    return new View(new \Twig_Environment(new \Twig_Loader_Filesystem(TEMPLATES)));
                 };
                 /**
                  * @var string
@@ -59,7 +53,7 @@ class Route
                  */
                 $actionName = $value['action'];
                 $container['model'] = function ($c) use ($modelName) {
-                    return new $modelName($c['db']);
+                    return new $modelName(new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS));
                 };
                 $container['controller'] = function ($c) use ($controllerName) {
                     return new $controllerName($c['model'], $c['view']);
