@@ -39,7 +39,7 @@ class StudentController extends Controller
              * @var Data that is sent to the view
              */
             $data = 'Student not found';
-            $this->view->show('validateView.php', $data);
+            $this->view->show('errorView.php', $data);
         }
     }
 
@@ -115,6 +115,6 @@ class StudentController extends Controller
      */
     public function errorAction()
     {
-        $this->view->show('errorView.php');
+        $this->view->show('errorView.php', 'This page does not exist');
     }
 }

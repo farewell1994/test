@@ -9,11 +9,11 @@ abstract class Controller
     /**
      * @var Model. received Model object
      */
-    public $model;
+    protected $model;
     /**
      * @var View. received View object
      */
-    public $view;
+    protected $view;
 
     /**
      * Controller constructor. Assigns the received values to variables
