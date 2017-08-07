@@ -12,7 +12,7 @@ class View
      * @var \Twig_Environment
      */
     private $twig;
-    function __construct(\Twig_Environment $twig)
+    public function __construct(\Twig_Environment $twig)
     {
         $this->twig = $twig;
     }
