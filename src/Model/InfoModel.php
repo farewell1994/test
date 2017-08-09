@@ -1,6 +1,8 @@
 <?php
 namespace Test\Model;
+
 use Test\Core\Model;
+use Test\Core\Validator;
 
 /**
  * Class InfoModel Class for working with the database table 'info'
@@ -44,7 +46,7 @@ class InfoModel extends Model
             /**
              * @var array. Result of validation
              */
-            $validateData = $this->validate(func_get_args());
+            $validateData = Validator::clear(func_get_args());
             $query = "INSERT INTO `info` (`id`, `name`, `age`) VALUES (NULL,'$validateData[0]','$validateData[1]')";
             $result = $this->connect->exec($query);
         }
@@ -84,23 +86,10 @@ class InfoModel extends Model
             /**
              * @var array. Result of validation
              */
-            $validateData = $this->validate($_POST);
+            $validateData = Validator::clear($_POST);
             $query = "UPDATE `info` SET `name`='$validateData[name]', `age`='$validateData[age]' WHERE `id`='$validateData[id]'";
             $result = $this->connect->exec($query);
         }
         return $result;
-    }
-
-    /**
-     * This method receive data, that need validation and executes it.
-     * @param array $data Data for validation
-     * @return mixed
-     */
-    public function validate($data)
-    {
-        foreach ($data as &$d) {
-            $d = trim(strip_tags($d));
-        }
-        return $data;
     }
 }

@@ -10,7 +10,7 @@ class Route
     /**
      * This method compares the received address with the existing addresses.
      * In case of coincidence, the method of a certain controller is executed,
-     * otherwise executing errorAction, that shows error for user
+     * otherwise that shows error for user
      *
      * @param array #objects Pimple container
      * @param string $path Requested URI

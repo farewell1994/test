@@ -20,7 +20,7 @@ class ServiceProvider implements ServiceProviderInterface
     public function register(Container $pimple)
     {
         $pimple['View'] = function ($c) {
-            return new View(new \Twig_Environment(new \Twig_Loader_Filesystem(TEMPLATES)));
+            return new View(new \Twig_Environment(new \Twig_Loader_Filesystem('src/View')));
         };
         $pimple['InfoModel'] = function ($c) {
             return new InfoModel(new \PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS));
