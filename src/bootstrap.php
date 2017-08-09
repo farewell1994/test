@@ -19,5 +19,8 @@ if (!empty($uriArray[4])) {
      * @var string URI parameter
      */
     $uriSegment = strtolower($uriArray[4]);
+} else {
+    $uriSegment = null;
 }
+require_once 'Config/routes.php';
 Route::start($_SERVER['REQUEST_URI'], $uriSegment, $routesArray, $objects);

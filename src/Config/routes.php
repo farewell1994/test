@@ -1,6 +1,6 @@
 <?php
 
-$uriSegment = null;
+
 /**
  * @var array. Array of all existing addresses.
  * Key is an address, value is a controller, model and action that are associated with that address
