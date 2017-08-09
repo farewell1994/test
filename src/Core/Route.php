@@ -34,7 +34,7 @@ class Route
                 break;
             }
             if ($counter == count($routesArray)) {
-                $objects["StudentController"]->errorAction();
+                $objects["View"]->show('errorView.php', 'This page does not exist');
             }
         }
     }

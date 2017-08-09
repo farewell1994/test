@@ -14,15 +14,17 @@ abstract class Controller
      * @var View. received View object
      */
     protected $view;
+    protected $booksModel;
 
     /**
      * Controller constructor. Assigns the received values to variables
      * @param Model $needModel
      * @param View $needView
      */
-    public function __construct(Model $needModel, View $needView)
+    public function __construct(Model $infoModel, Model $booksModel, View $view)
     {
-        $this->view = $needView;
-        $this->model = $needModel;
+        $this->view = $view;
+        $this->model = $infoModel;
+        $this->booksModel = $booksModel;
     }
 }

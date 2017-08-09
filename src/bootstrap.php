@@ -26,9 +26,12 @@ if (!empty($uriArray[4])) {
  */
 $routesArray = array(
     '/test/' => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'showAction'),
-    '/test/main/add' => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'addAction'),
-    '/test/main/edit/'.$uriSegment => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'editAction'),
-    '/test/main/delete/'.$uriSegment => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'deleteAction'),
-    '/test/error' => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'errorAction')
+    '/test/student/add' => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'addAction'),
+    '/test/student/edit/'.$uriSegment => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'editAction'),
+    '/test/student/delete/'.$uriSegment => array('controller' => 'StudentController', 'model' => 'InfoModel', 'action' => 'deleteAction'),
+    '/test/books' => array('controller' => 'BookController', 'model' => 'BooksModel', 'action' => 'showBookAction'),
+    '/test/books/add' => array('controller' => 'BookController', 'model' => 'BooksModel', 'action' => 'addBookAction'),
+    '/test/books/delete/'.$uriSegment => array('controller' => 'BookController', 'model' => 'BooksModel', 'action' => 'deleteBookAction'),
+    '/test/books/edit/'.$uriSegment => array('controller' => 'BookController', 'model' => 'BookModel', 'action' => 'editBookAction')
 );
 Route::start($_SERVER['REQUEST_URI'], $uriSegment, $routesArray, $objects);

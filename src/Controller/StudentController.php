@@ -38,7 +38,8 @@ class StudentController extends Controller
             /**
              * @var Data that is sent to the view
              */
-            $data = 'Student not found';
+            $data['type'] = 'student';
+            $data['error'] = 'Student not found';
             $this->view->show('errorView.php', $data);
         }
     }
@@ -55,7 +56,8 @@ class StudentController extends Controller
         /**
          * @var Data that is sent to the view
          */
-        $data = null;
+        $data['type'] = 'students';
+        $data['error'] = null;
         if ($_POST) {
             /**
              * @var integer. Assigned 1 if the query is successful
@@ -64,7 +66,8 @@ class StudentController extends Controller
             if ($result == 1) {
                 header('Location: /test');
             } else {
-                $data = 'Incorrect data';
+                $data['type'] = 'students';
+                $data['error'] = 'Incorrect data';
             }
         }
         $this->view->show('addView.php', $data);
@@ -87,6 +90,7 @@ class StudentController extends Controller
              * @var array Data about student
              */
             $data = explode('-', $uriSegment);
+            $data['type'] = 'students';
             $this->view->show('editView.php', $data);
         } else {
             /**
@@ -100,6 +104,7 @@ class StudentController extends Controller
                  * @var array. Array of entered incorrect values
                  */
                 $data = array_values($_POST);
+                $data['type'] = 'students';
                 /**
                  * @var string. Error for user
                  */
@@ -107,14 +112,5 @@ class StudentController extends Controller
                 $this->view->show('editView.php', $data);
             }
         }
-
-    }
-
-    /**
-     *If requested URI is not existing - this method shows page with error message
-     */
-    public function errorAction()
-    {
-        $this->view->show('errorView.php', 'This page does not exist');
     }
 }
