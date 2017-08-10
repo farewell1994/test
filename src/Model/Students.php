@@ -7,7 +7,7 @@ use Test\Core\Model;
  * Class InfoModel Class for working with the database table 'info'
  * @package Test\Model
  */
-class InfoModel extends Model
+class Students extends Model
 {
     /**
      * @var array. Array for returning
@@ -17,7 +17,7 @@ class InfoModel extends Model
      * This method queries all data from the database
      * @return mixed
      */
-    public function getInfo()
+    public function getStudents()
     {
         //$query = "SELECT `id`, `name`, `age` FROM `info`";
         $query = "SELECT 
@@ -44,7 +44,7 @@ class InfoModel extends Model
      * @param integer $age age of student
      * @return integer
      */
-    public function addInfo($name, $age)
+    public function addStudent($name, $age)
     {
         /**
          * @var integer. 0 if the data is incorrect, 1 if correct
@@ -66,7 +66,7 @@ class InfoModel extends Model
      * @param string $uriSegment ID student
      * @return integer
      */
-    public function deleteInfo($uriSegment)
+    public function deleteStudent($uriSegment)
     {
         $id = $uriSegment;
         $query = "DELETE FROM `info` WHERE `id`=$id";
@@ -84,7 +84,7 @@ class InfoModel extends Model
      * @param array $data. Data entered by the user (id, name, age)
      * @return integer
      */
-    public function editInfo($data)
+    public function editStudent($data)
     {
         /**
          * @var integer. Takes the value 1 if the query is successful, 0 if not successful

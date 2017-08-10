@@ -82,10 +82,10 @@ class BookController extends Controller
             }
         }
     }
-    public function bindAction($uriSegment)
+    public function bindBookAction($uriSegment)
     {
         if(empty($_POST)) {
-            $data = $this->studentsModel->getInfo();
+            $data = $this->studentsModel->getStudents();
             $this->view->show('attachView.php', $data);
         } else {
             $result = $this->booksModel->bindBook($uriSegment, $_POST);
@@ -98,7 +98,7 @@ class BookController extends Controller
             }
         }
     }
-    public function unbindAction($uriSegment) {
+    public function unbindBookAction($uriSegment) {
         $result = $this->booksModel->unbindBook($uriSegment);
         if ($result == true) {
             header('Location: /test/books');

@@ -4,7 +4,7 @@ namespace Test\Model;
 
 use Test\Core\Model;
 
-class BooksModel extends Model
+class Books extends Model
 {
     public $data;
     public function getBooks()

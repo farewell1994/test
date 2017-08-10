@@ -11,13 +11,13 @@ class StudentController extends Controller
     /**
      * This method calls the model method to retrieve all data and a method for showing results
      */
-    public function showAction()
+    public function showStudentsAction()
     {
         /**
          * @var object. Data about students
          */
-        $data = $this->studentsModel->getInfo();
-        $this->view->show('indexView.php', $data);
+        $data = $this->studentsModel->getStudents();
+        $this->view->show('studentsView.php', $data);
     }
 
     /**
@@ -26,12 +26,12 @@ class StudentController extends Controller
      * otherwise - redirecting to the page with an error
      * @param integer $uriSegment student ID for deletion
      */
-    public function deleteAction($uriSegment)
+    public function deleteStudentAction($uriSegment)
     {
         /**
          * @var integer. Assigned 1 if the query is successful
          */
-        $result = $this->studentsModel->deleteInfo($uriSegment);
+        $result = $this->studentsModel->deleteStudent($uriSegment);
         if ($result == true) {
             $this->booksModel->unbindBook(false, $uriSegment);
             header('Location: /test');
@@ -52,7 +52,7 @@ class StudentController extends Controller
      * If the query is successful - redirecting to the main page,
      * otherwise - redirecting to the page with an error
      */
-    public function addAction()
+    public function addStudentAction()
     {
         /**
          * @var Data that is sent to the view
@@ -63,7 +63,7 @@ class StudentController extends Controller
             /**
              * @var integer. Assigned 1 if the query is successful
              */
-            $result = $this->studentsModel->addInfo($_POST['name'], $_POST['age']*1);
+            $result = $this->studentsModel->addStudent($_POST['name'], $_POST['age']*1);
             if ($result == true) {
                 header('Location: /test');
             } else {
@@ -80,7 +80,7 @@ class StudentController extends Controller
      * If user has entered incorrect data - is showing error
      * @param string $uriSegment. Data about the student that need to be edited
      */
-    public function editAction($uriSegment)
+    public function editStudentAction($uriSegment)
     {
         /**
          * @var array. Data that is sent to the view
@@ -97,7 +97,7 @@ class StudentController extends Controller
             /**
              * @var integer. Assigned 1 if the query is successful
              */
-            $result = $this->studentsModel->editInfo($_POST);
+            $result = $this->studentsModel->editStudent($_POST);
             if ($result == true) {
                 header('Location: /test');
             } else {
