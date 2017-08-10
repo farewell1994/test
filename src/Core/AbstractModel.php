@@ -1,7 +1,11 @@
 <?php
 namespace Test\Core;
 
-abstract class Model
+/**
+ * Class AbstractModel. Contains __construct and method for validation data
+ * @package Test\Core
+ */
+abstract class AbstractModel
 {
     /**
      * @var object PDO. Connection to Data Base

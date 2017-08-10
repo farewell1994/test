@@ -3,7 +3,7 @@
 namespace Test\Core;
 
 /**
- * Class View This class renders needed views
+ * Class View This class has method for rendering needed views
  * @package Test\Core
  */
 class View
@@ -17,6 +17,7 @@ class View
         $this->twig = $twig;
     }
     /**
+     * This method renders a view
      * @param string $content Path to view
      * @param null $data Array of data
      */

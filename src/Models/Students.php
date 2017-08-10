@@ -1,34 +1,36 @@
 <?php
-namespace Test\Model;
+namespace Test\Models;
 
-use Test\Core\Model;
+use Test\Core\AbstractModel;
 
 /**
- * Class InfoModel Class for working with the database table 'info'
+ * Class Students. Class for working with the database table 'students'
  * @package Test\Model
  */
-class Students extends Model
+class Students extends AbstractModel
 {
     /**
-     * @var array. Array for returning
+     * @var array. An array to return to the controller in the getStudents () method
      */
     public $data;
     /**
-     * This method queries all data from the database
-     * @return mixed
+     * This method queries all data from the database and returns them
+     * @return array
      */
     public function getStudents()
     {
-        //$query = "SELECT `id`, `name`, `age` FROM `info`";
         $query = "SELECT 
-                      i.id, i.name, i.age, 
+                      s.id, s.name, s.age, 
                       b.title 
                   FROM 
-                      info i 
+                      students s 
                   LEFT JOIN 
                       books b 
                   ON 
-                      i.id =  b.student_id";
+                      s.id =  b.student_id";
+        /**
+         * @var. PDO statement
+         */
         $result = $this->connect->query($query);
         foreach($result as $d){
             $this->data[] = $d;
@@ -55,7 +57,7 @@ class Students extends Model
              * @var array. Result of validation
              */
             $validateData = $this->clear(func_get_args());
-            $query = "INSERT INTO `info` (`id`, `name`, `age`) VALUES (NULL,'$validateData[0]','$validateData[1]')";
+            $query = "INSERT INTO `students` (`id`, `name`, `age`) VALUES (NULL,'$validateData[0]','$validateData[1]')";
             $result = $this->connect->exec($query);
         }
         return $result;
@@ -69,7 +71,7 @@ class Students extends Model
     public function deleteStudent($uriSegment)
     {
         $id = $uriSegment;
-        $query = "DELETE FROM `info` WHERE `id`=$id";
+        $query = "DELETE FROM `students` WHERE `id`=$id";
         /**
          * @var integer. Takes the value 1 if the query is successful, 0 if not successful
          */
@@ -80,8 +82,8 @@ class Students extends Model
     /**
      * This method takes data, checks them for correctness.
      * If the data is correct - calls the method for validation and executes
-     * the query to adit the entry in the database.
-     * @param array $data. Data entered by the user (id, name, age)
+     * the query to edit the entry in the database.
+     * @param array $data. Data received from the user (id, name, age)
      * @return integer
      */
     public function editStudent($data)
@@ -95,7 +97,7 @@ class Students extends Model
              * @var array. Result of validation
              */
             $validateData = $this->clear($_POST);
-            $query = "UPDATE `info` SET `name`='$validateData[name]', `age`='$validateData[age]' WHERE `id`='$validateData[id]'";
+            $query = "UPDATE `students` SET `name`='$validateData[name]', `age`='$validateData[age]' WHERE `id`='$validateData[id]'";
             $result = $this->connect->exec($query);
         }
         return $result;

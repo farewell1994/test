@@ -1,12 +1,14 @@
 <?php
-namespace Test\Controller;
-use Test\Core\Controller;
+
+namespace Test\Controllers;
+
+use Test\Core\AbstractController;
 
 /**
  * Class StudentController Controller for working with information about students
  * @package Test\Controller
  */
-class StudentController extends Controller
+class StudentController extends AbstractController
 {
     /**
      * This method calls the model method to retrieve all data and a method for showing results
@@ -14,7 +16,7 @@ class StudentController extends Controller
     public function showStudentsAction()
     {
         /**
-         * @var object. Data about students
+         * @var array. Data about students
          */
         $data = $this->studentsModel->getStudents();
         $this->view->show('studentsView.php', $data);
@@ -22,14 +24,14 @@ class StudentController extends Controller
 
     /**
      *This method calls the model method to delete the entry.
-     * If the query is successful - redirecting to the main page,
+     * If the query is successful - unbinding a book and redirecting to the main page,
      * otherwise - redirecting to the page with an error
      * @param integer $uriSegment student ID for deletion
      */
     public function deleteStudentAction($uriSegment)
     {
         /**
-         * @var integer. Assigned 1 if the query is successful
+         * @var integer. Assigned 1 if the query is successful, 0 if not
          */
         $result = $this->studentsModel->deleteStudent($uriSegment);
         if ($result == true) {
@@ -37,7 +39,7 @@ class StudentController extends Controller
             header('Location: /test');
         } else {
             /**
-             * @var Data that is sent to the view
+             * @var array. Data that is sent to the error view.
              */
             $data['type'] = 'student';
             $data['error'] = 'Student not found';
@@ -55,7 +57,7 @@ class StudentController extends Controller
     public function addStudentAction()
     {
         /**
-         * @var Data that is sent to the view
+         * @var array. Data that is sent to the view
          */
         $data['type'] = 'students';
         $data['error'] = null;
@@ -67,6 +69,9 @@ class StudentController extends Controller
             if ($result == true) {
                 header('Location: /test');
             } else {
+                /**
+                 * @var array. Data that is sent to the error view.
+                 */
                 $data['type'] = 'students';
                 $data['error'] = 'Incorrect data';
             }
@@ -85,7 +90,7 @@ class StudentController extends Controller
         /**
          * @var array. Data that is sent to the view
          */
-        $data = null;
+        $data[] = null;
         if (empty($_POST)) {
             /**
              * @var array Data about student
@@ -105,10 +110,10 @@ class StudentController extends Controller
                  * @var array. Array of entered incorrect values
                  */
                 $data = array_values($_POST);
-                $data['type'] = 'students';
                 /**
-                 * @var string. Error for user
+                 * @var array. Data that is sent to the error view.
                  */
+                $data['type'] = 'students';
                 $data['error'] = 'Incorrect data';
                 $this->view->show('editView.php', $data);
             }

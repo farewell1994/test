@@ -30,11 +30,11 @@ class Route
                  * @var string Name of executing action
                  */
                 $actionName = $value['action'];
-                $objects[$value['controller']]->$actionName($uriSegment);
+                $objects['Test\Controllers\\'.$value['controller']]->$actionName($uriSegment);
                 break;
             }
             if ($counter == count($routesArray)) {
-                $objects["View"]->show('errorView.php', 'This page does not exist');
+                $objects["Test\Core\View"]->show('errorView.php', 'This page does not exist');
             }
         }
     }

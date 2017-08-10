@@ -1,10 +1,10 @@
 <?php
 namespace Test\Core;
 /**
- * Class Controller
+ * Class AbstractController. Contains __construct for controllers
  * @package Test\Core
  */
-abstract class Controller
+abstract class AbstractController
 {
     /**
      * @var Model. received Model object
@@ -21,7 +21,7 @@ abstract class Controller
      * @param Model $needModel
      * @param View $needView
      */
-    public function __construct(Model $infoModel, Model $booksModel, View $view)
+    public function __construct(AbstractModel $infoModel, AbstractModel $booksModel, View $view)
     {
         $this->view = $view;
         $this->studentsModel = $infoModel;
