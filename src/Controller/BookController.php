@@ -18,12 +18,12 @@ class BookController extends Controller
          */
         $data['type'] = 'books';
         $data['error'] = null;
-        if ($_POST) {
+        if (!empty($_POST)) {
             /**
              * @var integer. Assigned 1 if the query is successful
              */
             $result = $this->booksModel->addBook($_POST['name'], $_POST['author']);
-            if ($result == 1) {
+            if ($result == true) {
                 header('Location: /test/books');
             } else {
                 $data['error'] = 'Incorrect data';
@@ -38,7 +38,7 @@ class BookController extends Controller
          * @var integer. Assigned 1 if the query is successful
          */
         $result = $this->booksModel->deleteBook($uriSegment);
-        if ($result == 1) {
+        if ($result == true) {
             header('Location: /test/books');
         } else {
             /**
@@ -55,7 +55,7 @@ class BookController extends Controller
          * @var array. Data that is sent to the view
          */
         $data = null;
-        if (!$_POST) {
+        if (empty($_POST)) {
             /**
              * @var array Data about student
              */
@@ -67,7 +67,7 @@ class BookController extends Controller
              * @var integer. Assigned 1 if the query is successful
              */
             $result = $this->booksModel->editBook($_POST);
-            if ($result == 1) {
+            if ($result == true) {
                 header('Location: /test/books');
             } else {
                 /**
@@ -82,5 +82,30 @@ class BookController extends Controller
             }
         }
     }
-
+    public function bindAction($uriSegment)
+    {
+        if(empty($_POST)) {
+            $data = $this->studentsModel->getInfo();
+            $this->view->show('attachView.php', $data);
+        } else {
+            $result = $this->booksModel->bindBook($uriSegment, $_POST);
+            if ($result == true) {
+                header('Location: /test/books');
+            } else {
+                $data['type'] = 'book';
+                $data['error'] = 'Book not found';
+                $this->view->show('errorView.php', $data);
+            }
+        }
+    }
+    public function unbindAction($uriSegment) {
+        $result = $this->booksModel->unbindBook($uriSegment);
+        if ($result == true) {
+            header('Location: /test/books');
+        } else {
+            $data['type'] = 'book';
+            $data['error'] = 'Book not found';
+            $this->view->show('errorView.php', $data);
+        }
+    }
 }

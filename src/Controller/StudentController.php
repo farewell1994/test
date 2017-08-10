@@ -16,7 +16,7 @@ class StudentController extends Controller
         /**
          * @var object. Data about students
          */
-        $data = $this->model->getInfo();
+        $data = $this->studentsModel->getInfo();
         $this->view->show('indexView.php', $data);
     }
 
@@ -31,8 +31,8 @@ class StudentController extends Controller
         /**
          * @var integer. Assigned 1 if the query is successful
          */
-        $result = $this->model->deleteInfo($uriSegment);
-        if ($result == 1) {
+        $result = $this->studentsModel->deleteInfo($uriSegment);
+        if ($result == true) {
             header('Location: /test');
         } else {
             /**
@@ -58,12 +58,12 @@ class StudentController extends Controller
          */
         $data['type'] = 'students';
         $data['error'] = null;
-        if ($_POST) {
+        if (!empty($_POST)) {
             /**
              * @var integer. Assigned 1 if the query is successful
              */
-            $result = $this->model->addInfo($_POST['name'], $_POST['age']*1);
-            if ($result == 1) {
+            $result = $this->studentsModel->addInfo($_POST['name'], $_POST['age']*1);
+            if ($result == true) {
                 header('Location: /test');
             } else {
                 $data['type'] = 'students';
@@ -85,7 +85,7 @@ class StudentController extends Controller
          * @var array. Data that is sent to the view
          */
         $data = null;
-        if (!$_POST) {
+        if (empty($_POST)) {
             /**
              * @var array Data about student
              */
@@ -96,8 +96,8 @@ class StudentController extends Controller
             /**
              * @var integer. Assigned 1 if the query is successful
              */
-            $result = $this->model->editInfo($_POST);
-            if ($result == 1) {
+            $result = $this->studentsModel->editInfo($_POST);
+            if ($result == true) {
                 header('Location: /test');
             } else {
                 /**

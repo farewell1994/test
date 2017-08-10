@@ -1,5 +1,4 @@
 {% include 'head.html' %}
-    <body>
         <a class="add" href="/test/student/add">Add Student</a>
         <hr>
         <ol>

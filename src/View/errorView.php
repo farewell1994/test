@@ -1,5 +1,4 @@
 {% include 'head.html' %}
-    <body>
         <p class="error">
             {% if data.error %}
             {{data.error}}

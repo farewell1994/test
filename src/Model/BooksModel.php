@@ -3,7 +3,6 @@
 namespace Test\Model;
 
 use Test\Core\Model;
-use Test\Core\Validator;
 
 class BooksModel extends Model
 {
@@ -27,7 +26,7 @@ class BooksModel extends Model
             /**
              * @var array. Result of validation
              */
-            $validateData = Validator::clear(func_get_args());
+            $validateData = $this->clear(func_get_args());
             $query = "INSERT INTO `books` (`id`, `name`, `author`) VALUES (NULL,'$validateData[0]','$validateData[1]')";
             $result = $this->connect->exec($query);
         }
@@ -53,10 +52,22 @@ class BooksModel extends Model
             /**
              * @var array. Result of validation
              */
-            $validateData = Validator::clear($_POST);
+            $validateData = $this->clear($_POST);
             $query = "UPDATE `books` SET `name`='$validateData[name]', `author`='$validateData[author]' WHERE `id`='$validateData[id]'";
             $result = $this->connect->exec($query);
         }
+        return $result;
+    }
+    public function bindBook($uriSegment, $data)
+    {
+        $validateData = $this->clear($data);
+        $query = "UPDATE `books` SET `student_id`='$validateData[id]' WHERE `id` = '$uriSegment'";
+        $result = $this->connect->exec($query);
+        return $result;
+    }
+    public function unbindBook($uriSegment) {
+        $query = "UPDATE `books` SET `student_id`=null WHERE `id` = '$uriSegment'";
+        $result = $this->connect->exec($query);
         return $result;
     }
 }

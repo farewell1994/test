@@ -9,7 +9,7 @@ abstract class Controller
     /**
      * @var Model. received Model object
      */
-    protected $model;
+    protected $studentsModel;
     /**
      * @var View. received View object
      */
@@ -24,7 +24,7 @@ abstract class Controller
     public function __construct(Model $infoModel, Model $booksModel, View $view)
     {
         $this->view = $view;
-        $this->model = $infoModel;
+        $this->studentsModel = $infoModel;
         $this->booksModel = $booksModel;
     }
 }

@@ -1,5 +1,4 @@
 {% include 'head.html' %}
-    <body>
     <p class="error">{{data.error}}</p>
         <form method="post">
             <input type="hidden" name="id" value="{{ data.0 }}">

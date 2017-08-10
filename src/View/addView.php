@@ -1,6 +1,5 @@
 {% include 'head.html' %}
         <p class="error">{{data.error}}</p>
-        </br>
         <form method="post">
             <input type="text" name="name" placeholder="name"><br>
             {% if data.type == 'students' %}
