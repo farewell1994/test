@@ -1,4 +1,5 @@
-{% include 'head.html' %}
+{% extends "app.html" %}
+{% block content %}
     <p class="error">{{data.error}}</p>
         <form method="post">
             <input type="hidden" name="id" value="{{ data.0 }}">
@@ -16,5 +17,4 @@
     {% else %}
     <a href="/test/books">Return to books list</a>
     {% endif %}
-    </body>
-</html>
+{% endblock %}

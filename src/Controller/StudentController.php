@@ -33,6 +33,7 @@ class StudentController extends Controller
          */
         $result = $this->studentsModel->deleteInfo($uriSegment);
         if ($result == true) {
+            $this->booksModel->unbindBook(false, $uriSegment);
             header('Location: /test');
         } else {
             /**

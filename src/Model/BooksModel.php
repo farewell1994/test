@@ -65,9 +65,14 @@ class BooksModel extends Model
         $result = $this->connect->exec($query);
         return $result;
     }
-    public function unbindBook($uriSegment) {
-        $query = "UPDATE `books` SET `student_id`=null WHERE `id` = '$uriSegment'";
-        $result = $this->connect->exec($query);
-        return $result;
+    public function unbindBook($uriSegment, $deleteStudent = false) {
+        if ($deleteStudent == false) {
+            $query = "UPDATE `books` SET `student_id`=null WHERE `id` = '$uriSegment'";
+            $result = $this->connect->exec($query);
+            return $result;
+        } else {
+            $query = "UPDATE `books` SET `student_id`=null WHERE `student_id` = '$deleteStudent'";
+            $this->connect->exec($query);
+        }
     }
 }

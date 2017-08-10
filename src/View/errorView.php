@@ -1,4 +1,5 @@
-{% include 'head.html' %}
+{% extends "app.html" %}
+{% block content %}
         <p class="error">
             {% if data.error %}
             {{data.error}}
@@ -7,5 +8,4 @@
             {% endif %}
         </p>
     <hr>
-    </body>
-</html>
+{% endblock %}

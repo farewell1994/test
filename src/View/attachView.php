@@ -1,4 +1,5 @@
-    {% include 'head.html' %}
+    {% extends "app.html" %}
+    {% block content %}
     <p class="list">Choose a student</p>
         <form method="post">
             <select name="id">
@@ -9,5 +10,4 @@
             <input type="submit" name="submit" value="Bind">
         </form>
         <a href="/test/books">Return to books list</a>
-    </body>
-</html>
+    {% endblock %}

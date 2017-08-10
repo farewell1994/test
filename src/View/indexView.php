@@ -1,4 +1,5 @@
-{% include 'head.html' %}
+{% extends "app.html" %}
+{% block content %}
         <a class="add" href="/test/student/add">Add Student</a>
         <hr>
         <ol>
@@ -13,5 +14,4 @@
             {% endfor %}
 
         </ol>
-    </body>
-</html>
+{% endblock %}
