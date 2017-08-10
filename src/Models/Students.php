@@ -27,7 +27,9 @@ class Students extends AbstractModel
                   LEFT JOIN 
                       books b 
                   ON 
-                      s.id =  b.student_id";
+                      s.id =  b.student_id
+                  /*GROUP BY
+                      b.student_id*/";
         /**
          * @var. PDO statement
          */

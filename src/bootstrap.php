@@ -1,15 +1,16 @@
 <?php
 
 use Test\Core\Route;
-use Test\Core\ServiceProvider;
 use Pimple\Container;
 
+require_once 'Config/providers.php';
 /**
  * Pimple container
  */
 $container = new Container();
-$ServiceProvider = new ServiceProvider();
-$objects = $ServiceProvider->register($container);
+foreach ($providers as $class) {
+    $container->register(new $class());
+}
 /**
  * @var array Requested URI
  */
@@ -23,4 +24,4 @@ if (count($uriArray) == 5) {
     $uriSegment = null;
 }
 require_once 'Config/routes.php';
-Route::start($_SERVER['REQUEST_URI'], $uriSegment, $routesArray, $objects);
+Route::start($_SERVER['REQUEST_URI'], $uriSegment, $routesArray, $container);
