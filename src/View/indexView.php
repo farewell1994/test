@@ -7,7 +7,11 @@
             <li class="list">
                 <p>Name : {{ info.name }}</p>
                 <p>Age : {{ info.age }}</p>
-                <p>Books: </p>
+                {% if info.title %}
+                <p>Books: <b>{{info.title}}</b></p>
+                {% else %}
+                <p>Student without books</p>
+                {% endif %}
                 <a href='student/edit/{{ info.id }}-{{ info.name|replace({ " ": "_" }) }}-{{ info.age }}'>edit</a> | <a href="student/delete/{{ info.id }}">delete</a>
             </li>
             <hr>

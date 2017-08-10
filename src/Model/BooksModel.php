@@ -9,25 +9,33 @@ class BooksModel extends Model
     public $data;
     public function getBooks()
     {
-        $query = "SELECT `id`, `name`, `author`, `student_id` FROM `books`";
+        $query = "SELECT 
+                      b.id, b.title, b.author,
+                      i.name
+                  FROM
+                      books b
+                  LEFT JOIN
+                      info i
+                  ON
+                      b.student_id = i.id";
         $result = $this->connect->query($query);
         foreach($result as $d){
             $this->data[] = $d;
         }
         return $this->data;
     }
-    public function addBook($name, $author)
+    public function addBook($title, $author)
     {
         /**
          * @var integer. 0 if the data is incorrect, 1 if correct
          */
         $result = 0;
-        if ($name!="" && $author != "") {
+        if ($title!="" && $author != "") {
             /**
              * @var array. Result of validation
              */
             $validateData = $this->clear(func_get_args());
-            $query = "INSERT INTO `books` (`id`, `name`, `author`) VALUES (NULL,'$validateData[0]','$validateData[1]')";
+            $query = "INSERT INTO `books` (`id`, `title`, `author`) VALUES (NULL,'$validateData[0]','$validateData[1]')";
             $result = $this->connect->exec($query);
         }
         return $result;
@@ -48,12 +56,12 @@ class BooksModel extends Model
          * @var integer. Takes the value 1 if the query is successful, 0 if not successful
          */
         $result = 0;
-        if ($data['name']!= "" && $data['author'] != "") {
+        if ($data['title']!= "" && $data['author'] != "") {
             /**
              * @var array. Result of validation
              */
             $validateData = $this->clear($_POST);
-            $query = "UPDATE `books` SET `name`='$validateData[name]', `author`='$validateData[author]' WHERE `id`='$validateData[id]'";
+            $query = "UPDATE `books` SET `title`='$validateData[title]', `author`='$validateData[author]' WHERE `id`='$validateData[id]'";
             $result = $this->connect->exec($query);
         }
         return $result;

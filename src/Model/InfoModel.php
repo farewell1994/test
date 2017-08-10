@@ -19,7 +19,16 @@ class InfoModel extends Model
      */
     public function getInfo()
     {
-        $query = "SELECT `id`, `name`, `age` FROM `info`";
+        //$query = "SELECT `id`, `name`, `age` FROM `info`";
+        $query = "SELECT 
+                      i.id, i.name, i.age, 
+                      b.title 
+                  FROM 
+                      info i 
+                  LEFT JOIN 
+                      books b 
+                  ON 
+                      i.id =  b.student_id";
         $result = $this->connect->query($query);
         foreach($result as $d){
             $this->data[] = $d;

@@ -14,11 +14,11 @@ $objects = $ServiceProvider->register($container);
  * @var array Requested URI
  */
 $uriArray = explode('/', $_SERVER['REQUEST_URI']);
-if (!empty($uriArray[4])) {
+if (count($uriArray) == 5) {
     /**
      * @var string URI parameter
      */
-    $uriSegment = strtolower($uriArray[4]);
+    $uriSegment = $uriArray[4];
 } else {
     $uriSegment = null;
 }
