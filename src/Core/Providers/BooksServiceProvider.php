@@ -5,10 +5,10 @@ namespace Test\Core\Providers;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
-/**This class returns services
+/**This class has method that returns service
  *
- * Class ServiceProvider
- * @package Test\Core
+ * Class BooksServiceProvider
+ * @package Test\Core\Providers
  */
 class BooksServiceProvider implements ServiceProviderInterface
 {
