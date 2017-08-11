@@ -15,3 +15,4 @@ foreach ($providers as $class) {
  * @param array $routesArray. Determined in the src/Config/routes.php file.
  */
 Route::start($_SERVER['REQUEST_URI'], $uriSegment, $routesArray, $container);
+-

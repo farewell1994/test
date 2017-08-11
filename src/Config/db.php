@@ -18,3 +18,4 @@ class DBConfig
         'database' => 'test',
         );
 }
+-
