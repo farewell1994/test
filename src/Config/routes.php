@@ -1,5 +1,5 @@
 <?php
-return [
+return $routesArray = array(
     /**
      * @var array. Array of all existing addresses.
      * Key is an address, value is a controller, model and action that are associated with that address
@@ -14,4 +14,4 @@ return [
     '/test/books/edit/'.$uriSegment => array('controller' => 'BookController', 'action' => 'editBookAction'),
     '/test/books/bind/'.$uriSegment => array('controller' => 'BookController', 'action' => 'bindBookAction'),
     '/test/book/unbind/'.$uriSegment => array('controller' => 'BookController', 'action' => 'unbindBookAction'),
-    ];
+);
