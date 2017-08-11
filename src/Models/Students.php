@@ -10,10 +10,6 @@ use Test\Core\AbstractModel;
 class Students extends AbstractModel
 {
     /**
-     * @var array. An array to return to the controller in the getStudents () method
-     */
-    public $data;
-    /**
      * This method queries all data from the database and returns them
      * @return array
      */
@@ -27,17 +23,12 @@ class Students extends AbstractModel
                   LEFT JOIN 
                       books b 
                   ON 
-                      s.id =  b.student_id
-                  /*GROUP BY
-                      b.student_id*/";
+                      s.id =  b.student_id";
         /**
          * @var. PDO statement
          */
         $result = $this->connect->query($query);
-        foreach($result as $d){
-            $this->data[] = $d;
-        }
-        return $this->data;
+        return $result;
     }
 
     /**

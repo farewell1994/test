@@ -11,10 +11,6 @@ use Test\Core\AbstractModel;
 class Books extends AbstractModel
 {
     /**
-     * @var array An array to return to the controller in the getBooks () method
-     */
-    public $data;
-    /**
      * This method queries all data from the database and returns them
      * @return array
      */
@@ -33,10 +29,7 @@ class Books extends AbstractModel
          * @var. PDO statement
          */
         $result = $this->connect->query($query);
-        foreach($result as $d){
-            $this->data[] = $d;
-        }
-        return $this->data;
+        return $result;
     }
 
     /**

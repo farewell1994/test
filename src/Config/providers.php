@@ -1,8 +1,9 @@
 <?php
-/**
- * @var array. Array of all existing providers
- */
+
 return [
+    /**
+     * @var array. Array of all existing providers
+     */
     'View' => '\Test\Core\Providers\ViewServiceProvider',
     'Books' => '\Test\Core\Providers\BooksServiceProvider',
     'Students' => '\Test\Core\Providers\StudentsServiceProvider',
