@@ -1,4 +1,5 @@
 <?php
+
 namespace Test\Models;
 
 use Test\Core\AbstractModel;
@@ -9,9 +10,10 @@ use Test\Core\AbstractModel;
  */
 class Students extends AbstractModel
 {
+
     /**
      * This method queries all data from the database and returns them
-     * @return array
+     * @return PDO statement. Data about students
      */
     public function getStudents()
     {
@@ -24,7 +26,7 @@ class Students extends AbstractModel
                       books b 
                   ON 
                       s.id =  b.student_id
-                  GROUP BY b.student_id";
+                  GROUP BY s.id";
         /**
          * @var. PDO statement
          */
