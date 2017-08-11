@@ -11,4 +11,3 @@ return $providers = array(
     'StudentController' => '\Test\Core\Providers\StudentControllerServiceProvider',
     'BookController' => '\Test\Core\Providers\BookControllerServiceProvider',
 );
--

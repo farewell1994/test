@@ -20,4 +20,3 @@ class StudentControllerServiceProvider implements ServiceProviderInterface
         return $pimple;
     }
 }
--

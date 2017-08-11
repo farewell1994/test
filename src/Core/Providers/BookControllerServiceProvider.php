@@ -20,4 +20,3 @@ class BookControllerServiceProvider implements ServiceProviderInterface
         return $pimple;
     }
 }
--

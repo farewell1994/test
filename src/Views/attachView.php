@@ -12,4 +12,3 @@
         <hr>
         <a href="/test/books">Return to books list</a>
     {% endblock %}
-    -

@@ -13,4 +13,3 @@ if (count($uriArray) == 5) {
     $uriSegment = null;
 }
 return $uriSegment;
--

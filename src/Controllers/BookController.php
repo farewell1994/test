@@ -176,4 +176,3 @@ class BookController extends AbstractController
         }
     }
 }
--
