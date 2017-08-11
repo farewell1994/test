@@ -12,9 +12,9 @@ class Route
      * In case of coincidence, the method of a certain controller is executed,
      * otherwise that shows error for user
      *
-     * @param array #objects Pimple container
+     * @param array $objects Pimple container
      * @param string $path Requested URI
-     * @param string $uriSegment Parametr in URI
+     * @param string $uriSegment Parameter in URI
      * @param array $routesArray array of all existing URI
      */
     public static function start($path, $uriSegment, $routesArray, $objects)

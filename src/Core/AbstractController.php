@@ -1,5 +1,7 @@
 <?php
+
 namespace Test\Core;
+
 /**
  * Class AbstractController. Contains __construct for controllers
  * @package Test\Core

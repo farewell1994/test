@@ -78,6 +78,7 @@ class StudentController extends AbstractController
         }
         $this->view->show('addView.php', $data);
     }
+
     /**
      * This method shows form for edit entry and calls model method to edit entry.
      * If array _POST empty - showing form for edit entry. Data for the form is taken from the parameter uri.

@@ -10,9 +10,10 @@ use Test\Core\AbstractModel;
  */
 class Books extends AbstractModel
 {
+
     /**
      * This method queries all data from the database and returns them
-     * @return array
+     * @return PDO statement. Data about students
      */
     public function getBooks()
     {
@@ -38,7 +39,7 @@ class Books extends AbstractModel
      * the query to add the entry to the database.
      * @param string $title name of book
      * @param integer $author name of author
-     * @return integer
+     * @return integer. Result of query
      */
     public function addBook($title, $author)
     {
@@ -46,12 +47,15 @@ class Books extends AbstractModel
          * @var integer. 0 if the data is incorrect, 1 if correct
          */
         $result = 0;
-        if ($title!="" && $author != "") {
+        if ($title != "" && $author != "") {
             /**
              * @var array. Result of validation
              */
             $validateData = $this->clear(func_get_args());
             $query = "INSERT INTO `books` (`id`, `title`, `author`) VALUES (NULL,'$validateData[0]','$validateData[1]')";
+            /**
+             * @var. integer. Takes the value 1 if the query is successful, 0 if not successful
+             */
             $result = $this->connect->exec($query);
         }
         return $result;
@@ -60,7 +64,7 @@ class Books extends AbstractModel
     /**
      * This method takes a URI parameter and executes a query to remove a entry from the database
      * @param string $uriSegment ID book
-     * @return integer
+     * @return integer. Result of query
      */
     public function deleteBook($uriSegment)
     {
@@ -78,7 +82,7 @@ class Books extends AbstractModel
      * If the data is correct - calls the method for validation and executes
      * the query to edit the entry in the database.
      * @param array $data. Data received from the user (id, title, author)
-     * @return integer
+     * @return integer. Result of query
      */
     public function editBook($data)
     {
@@ -86,12 +90,15 @@ class Books extends AbstractModel
          * @var integer. Takes the value 1 if the query is successful, 0 if not successful
          */
         $result = 0;
-        if ($data['title']!= "" && $data['author'] != "") {
+        if ($data['title'] != "" && $data['author'] != "") {
             /**
              * @var array. Result of validation
              */
             $validateData = $this->clear($_POST);
             $query = "UPDATE `books` SET `title`='$validateData[title]', `author`='$validateData[author]' WHERE `id`='$validateData[id]'";
+            /**
+             * @var. integer. Takes the value 1 if the query is successful, 0 if not successful
+             */
             $result = $this->connect->exec($query);
         }
         return $result;

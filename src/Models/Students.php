@@ -40,7 +40,7 @@ class Students extends AbstractModel
      * the query to add the entry to the database.
      * @param string $name name of student
      * @param integer $age age of student
-     * @return integer
+     * @return integer. Result of query
      */
     public function addStudent($name, $age)
     {
@@ -48,12 +48,15 @@ class Students extends AbstractModel
          * @var integer. 0 if the data is incorrect, 1 if correct
          */
         $result = 0;
-        if ($name!="" && $age != 0) {
+        if ($name != "" && $age != 0) {
             /**
              * @var array. Result of validation
              */
             $validateData = $this->clear(func_get_args());
             $query = "INSERT INTO `students` (`id`, `name`, `age`) VALUES (NULL,'$validateData[0]','$validateData[1]')";
+            /**
+             * @var. integer. Takes the value 1 if the query is successful, 0 if not successful
+             */
             $result = $this->connect->exec($query);
         }
         return $result;
@@ -62,10 +65,13 @@ class Students extends AbstractModel
     /**
      * This method takes a URI parameter and executes a query to remove a entry from the database
      * @param string $uriSegment ID student
-     * @return integer
+     * @return integer. Result of query
      */
     public function deleteStudent($uriSegment)
     {
+        /**
+         * @var string. Student's ID
+         */
         $id = $uriSegment;
         $query = "DELETE FROM `students` WHERE `id`=$id";
         /**
@@ -80,7 +86,7 @@ class Students extends AbstractModel
      * If the data is correct - calls the method for validation and executes
      * the query to edit the entry in the database.
      * @param array $data. Data received from the user (id, name, age)
-     * @return integer
+     * @return integer. Result of query
      */
     public function editStudent($data)
     {
@@ -88,12 +94,15 @@ class Students extends AbstractModel
          * @var integer. Takes the value 1 if the query is successful, 0 if not successful
          */
         $result = 0;
-        if ($data['name']!= "" && $data['age'] != 0) {
+        if ($data['name'] != "" && $data['age'] != 0) {
             /**
              * @var array. Result of validation
              */
             $validateData = $this->clear($_POST);
             $query = "UPDATE `students` SET `name`='$validateData[name]', `age`='$validateData[age]' WHERE `id`='$validateData[id]'";
+            /**
+             * @var integer. Takes the value 1 if the query is successful, 0 if not successful
+             */
             $result = $this->connect->exec($query);
         }
         return $result;

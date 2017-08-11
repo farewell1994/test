@@ -33,7 +33,7 @@ class BookController extends AbstractController
     public function addBookAction()
     {
         /**
-         * @var Data that is sent to the view
+         * @var array Data that is sent to the view
          */
         $data['type'] = 'books';
         $data['error'] = null;
@@ -91,7 +91,7 @@ class BookController extends AbstractController
         /**
          * @var array. Data that is sent to the view
          */
-        $data = null;
+        $data[] = null;
         if (empty($_POST)) {
             /**
              * @var array Data about books
