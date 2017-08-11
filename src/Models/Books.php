@@ -109,7 +109,7 @@ class Books extends AbstractModel
          * @var array. Result of validation
          */
         $validateData = $this->clear($data);
-        $query = "UPDATE `books` SET `student_id`='$validateData' WHERE `id` = '$uriSegment'";
+        $query = "UPDATE `books` SET `student_id`=".$validateData["id"]." WHERE `id` = ".$uriSegment;
         /**
          * @var integer. Takes the value 1 if the query is successful, 0 if not successful
          */

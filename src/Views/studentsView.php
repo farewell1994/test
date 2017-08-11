@@ -7,8 +7,8 @@
             <li class="list">
                 <p>Name : {{ info.name }}</p>
                 <p>Age : {{ info.age }}</p>
-                {% if info.title %}
-                <p>Books: <b>{{info.title}}</b></p>
+                {% if info.books %}
+                <p>Books: <b>{{info.books}}</b></p>
                 {% else %}
                 <p>Student without books</p>
                 {% endif %}

@@ -139,7 +139,7 @@ class BookController extends AbstractController
             /**
              * @var integer. Assigned 1 if the query is successful
              */
-            $result = $this->booksModel->bindBook($uriSegment, $_POST['id']);
+            $result = $this->booksModel->bindBook($uriSegment, $_POST);
             if ($result == true) {
                 header('Location: /test/books');
             } else {

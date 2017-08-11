@@ -8,7 +8,7 @@ use Pimple\ServiceProviderInterface;
 
 /**This class has method that returns service
  *
- * Class BooksServiceProvider
+ * Class PDOServiceProvider
  * @package Test\Core\Providers
  */
 class PDOServiceProvider implements ServiceProviderInterface

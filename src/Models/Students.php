@@ -15,15 +15,16 @@ class Students extends AbstractModel
      */
     public function getStudents()
     {
-        $query = "SELECT 
+        $query = "SELECT
                       s.id, s.name, s.age, 
-                      b.title 
+                      GROUP_CONCAT(b.title) books
                   FROM 
                       students s 
                   LEFT JOIN 
                       books b 
                   ON 
-                      s.id =  b.student_id";
+                      s.id =  b.student_id
+                  GROUP BY b.student_id";
         /**
          * @var. PDO statement
          */
