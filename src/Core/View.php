@@ -31,3 +31,4 @@ class View
         echo $this->twig->render($content, array('data' => $data));
     }
 }
+

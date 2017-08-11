@@ -16,3 +16,4 @@ return $routesArray = array(
     '/test/books/bind/'.$uriSegment => array('controller' => 'BookController', 'action' => 'bindBookAction'),
     '/test/book/unbind/'.$uriSegment => array('controller' => 'BookController', 'action' => 'unbindBookAction'),
 );
+

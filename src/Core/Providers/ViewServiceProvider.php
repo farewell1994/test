@@ -21,3 +21,4 @@ class ViewServiceProvider implements ServiceProviderInterface
         return $pimple;
     }
 }
+
